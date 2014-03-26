@@ -1,6 +1,8 @@
 require 'sinatra/base'
 
 class App < Sinatra::Application
+  TASKS_ARRAY =[]
+
   get '/' do
     erb :index
   end
@@ -9,9 +11,14 @@ class App < Sinatra::Application
     erb :new
   end
 
-  post '/' do
-    @task = params[:task_name]
-    erb :index
+  post '/tasks' do
+    TASKS_ARRAY << params[:task_name]
+    erb :tasks
+  end
+
+  get '/tasks/:id' do
+
+    erb :id
   end
 
 end
